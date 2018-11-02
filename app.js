@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const cors = require('cors')
+
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
@@ -23,6 +25,13 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  credentials: true,
+}
+
+app.use(cors(corsOptions));
 
 // Middleware Setup
 app.use(logger('dev'));
